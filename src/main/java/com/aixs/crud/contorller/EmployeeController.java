@@ -37,7 +37,7 @@ public class EmployeeController {
 	@Autowired
 	private EmployeeService employeeService;
 	
-	
+	@ResponseBody
 	@RequestMapping(value="/emp/{ids}",method=RequestMethod.DELETE)
 	public Msg deleteEmpById(@PathVariable("ids")String ids)
 	{
