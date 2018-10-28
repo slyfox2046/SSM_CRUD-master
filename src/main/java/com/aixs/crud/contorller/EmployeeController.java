@@ -123,7 +123,7 @@ public class EmployeeController {
 				System.out.println("错误的信息"+fieldError.getDefaultMessage());
 				map.put(fieldError.getField(), fieldError.getDefaultMessage());
 			}
-			return Msg.fail();
+			return Msg.fail().add("errorFields",map);
 		}
 		else {
 			employeeService.saveEmp(employee);

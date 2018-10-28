@@ -105,7 +105,7 @@
 	    <if test="orderByClause != null">
 	      order by ${orderByClause}
 	    </if>
-  
+        order by e.emp_id
   
   </select> 
 
