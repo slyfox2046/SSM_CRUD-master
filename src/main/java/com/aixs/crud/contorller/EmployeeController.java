@@ -62,15 +62,37 @@ public class EmployeeController {
 		return Msg.success();
 		
 	}
-	
+
+	/**
+	 * tomcat :
+	 * 1.将请求体中的数据，封装一个map
+	 * 2.request.getParameter("empName")就将会从这个map中取值
+	 * 3.SpringMvc封装pojo对象的时候，会把pojo中的每个属性的值，request.getParameter("empName")
+	 *
+	 * ajax发送put请求应发的血案：
+	 * 		put请求，请求体中的数据，request.getParameter("empName")拿不到
+	 * 		Tomcat一看是put请求，不会封装请求体中的数据为map，只有post形式的请求才封装请求体为map
+	*/
 	@ResponseBody
 	@RequestMapping(value="/emp/{empId}",method=RequestMethod.PUT)
 	public Msg saveEmp(Employee employee)
 	{
 		employeeService.update(employee);
 		return Msg.success();
-		
+
 	}
+
+//	@ResponseBody
+//	@RequestMapping(value="/emp/{empId}",method=RequestMethod.PUT)
+//	public Msg saveEmp(Employee employee)
+//	{
+//		System.out.println("将要更新的员工数据："+employee);
+//		employeeService.updateEmp(employee);
+//		return Msg.success();
+//
+//	}
+
+
 	@ResponseBody
 	@RequestMapping(value="/emp/{id}",method=RequestMethod.GET)
 	public Msg getEmp(@PathVariable("id")Integer id)
@@ -78,7 +100,7 @@ public class EmployeeController {
 		Employee employee =employeeService.getEmp(id);
 		return Msg.success().add("emp", employee);
 	}
-	
+
 	/**
 	 * 检查用户名是否可用
 	 * @param empName
