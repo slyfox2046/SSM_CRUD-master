@@ -71,6 +71,7 @@ public class EmployeeController {
 		return Msg.success();
 		
 	}
+	@ResponseBody
 	@RequestMapping(value="/emp/{id}",method=RequestMethod.GET)
 	public Msg getEmp(@PathVariable("id")Integer id)
 	{
